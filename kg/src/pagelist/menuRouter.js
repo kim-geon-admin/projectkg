@@ -1,7 +1,9 @@
 import React, { Fragment } from 'react';
 import {Route,Routes,NavLink} from 'react-router-dom';
 import BoardView from "./board/BoardView";
-import customAxios from '../customAxios';
+import customAxios from "../customAxios.js"
+
+
 const leftDivCss = {
   width:'20%',
   height:'95%',
@@ -12,7 +14,7 @@ const leftDivCss = {
 
 
 const menuRouter = () => {
-    customAxios('/ip',   function callback(data) {
+  customAxios('/ip',   function callback(data) {
   
         console.log(data);
     
@@ -28,6 +30,7 @@ const menuRouter = () => {
                         <li><NavLink  to="/add">home</NavLink></li>
                         <li><NavLink to="/board"> board</NavLink></li>
                         <li><NavLink to ="/contact">contact</NavLink></li>
+
                     </ul>
             </div>
             <div >
