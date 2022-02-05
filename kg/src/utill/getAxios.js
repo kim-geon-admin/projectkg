@@ -2,8 +2,8 @@ import axios from 'axios'; // 액시오스
 
 
 
-export default function customAxiosPost(url, param,callback) {
-  axios(
+export default async function customAxiosPost(url, param,callback) {
+ await axios(
     {
       url: '/api' + url,
       method: 'post',
