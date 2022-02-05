@@ -2,8 +2,8 @@ import axios from 'axios'; // 액시오스
 
 
 
-export default async function customAxiosPost(url, param,callback) {
- await axios(
+export default  function customAxiosPost(url, param,callback) {
+  axios(
     {
       url: '/api' + url,
       method: 'post',
@@ -22,3 +22,38 @@ export default async function customAxiosPost(url, param,callback) {
     callback(response.data);
   });
 }
+
+
+export function axiosPost(url, param) {
+
+ return  axios(
+    {
+      url: '/api' + url,
+      method: 'post',
+      data : param,
+      baseURL: 'http://localhost:8080',
+      withCredentials: true,
+    } 
+  ).then(function (response) {
+    console.log(response);
+    return response.data;
+  });
+
+}
+
+
+export function axiosGet(url) {
+  return axios(
+    {
+      url: '/api' + url,
+      method: 'get',
+      baseURL: 'http://localhost:8080',
+      withCredentials: true,
+    } 
+  ).then(function (response) {
+    return response.data;
+  });
+}
+// return new Promise(function(resove,reject){
+    
+// })

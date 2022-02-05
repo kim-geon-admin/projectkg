@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import getAxios from '../utill/getAxios';
+import {axiosPost,axiosGet} from '../utill/getAxios';
 
 import {useNavigate} from 'react-router-dom';
 
@@ -47,7 +47,6 @@ export default function SignIn() {
 
   const [userId, setuserId] = useState("") ;
   const [userPass, setuserPass] = useState('') ;
-  const [loginAuth, setloginAuth] = useState(false);
 
   let navigate = useNavigate();
   
@@ -63,20 +62,25 @@ export default function SignIn() {
   }
 
 
-const authLogin = () =>{
-  let param = {
-    user_id : userId,
-    user_password : userPass
-  }
-console.log('param',param);
-  getAxios('/userInfo', param,  function callback(data) {
-  
-    console.log(data);
-    
-    console.log(userId);
-    navigate("/main")
-  });
-
+const  authLogin = async () =>{
+        let param = {
+          user_id : userId,
+          user_password : userPass
+        }
+      console.log('param',param);
+      /* async awit 적용 전 버젼
+        getAxios('/userInfo', param,  function callback(data) {
+          navigate("/main")
+        });
+      */
+      //async awit 적용 버젼
+      let isAuthUser = await axiosPost('/userInfo', param);
+      
+      if( isAuthUser != undefined && isAuthUser.length > 0 ){
+        navigate("/main");
+      }else{
+        alert('인증된 사용자가 아닙니다') ;
+      }
 }
 
 
