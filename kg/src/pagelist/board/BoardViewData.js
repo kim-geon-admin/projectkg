@@ -71,7 +71,7 @@ function BoardViewData() {
               <TableCell align="right">{row.contents}</TableCell>
               <TableCell align="right">{row.user_id}</TableCell>
              
-            </TableRow>
+            </TableRow> 
           ))}
         </TableBody>
       </Table>
