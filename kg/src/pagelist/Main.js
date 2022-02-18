@@ -5,18 +5,14 @@ import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import MailIcon from '@mui/icons-material/Mail';
-import MenuIcon from '@mui/icons-material/Menu';
+
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MenuList from './MenuList.js';
 import BoardViewData from './board/BoardViewData.js';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
 const drawerWidth = 240;
 
@@ -45,7 +41,7 @@ function ResponsiveDrawer(props) {
         <Toolbar>
        
           <Typography variant="h6" noWrap component="div">
-            Responsive drawer
+            자유게시판
           </Typography>
         </Toolbar>
       </AppBar>
@@ -67,6 +63,7 @@ function ResponsiveDrawer(props) {
           {MenuList}
         </Drawer>
       </Box>
+    
       <Box
         component="main"
         sx={{ flexGrow: 1, p: 12, width: { sm: `calc(100% - ${drawerWidth}px)` } }}

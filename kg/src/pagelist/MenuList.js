@@ -14,7 +14,7 @@ const menuList = (
  
     <Divider />
     <List>
-      {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+      {['자유게시판', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
         <ListItem button key={text}>
           <ListItemIcon>
             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

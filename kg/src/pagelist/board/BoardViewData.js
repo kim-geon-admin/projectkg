@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {axiosGet} from '../../utill/getAxios';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles({
   table: {
@@ -20,12 +20,20 @@ const useStyles = makeStyles({
 function BoardViewData() {
   // IP주소 변수 선언
   const [rows, setRows] = useState([]);
+  //ag-grid col info
+  const [columnDefs, setColumnDefs] = useState([
+    { headerName: "NO",field:"id", sortable: true, filter: true,valueGetter: "node.rowIndex + 1" },
+    { headerName: "ID",field:"id", sortable: true, filter: true },
+    { headerName: "제목",field:"subject", sortable: true, filter: true},
+    { headerName: "컨텐츠",field:"contents", sortable: true, filter: true },
+    { headerName: "작성자",field:"user_id", sortable: true, filter: true },
+]);
 
 
   const  selectBoard = async () =>{
    
     let contents = await axiosGet('/getContents');
-    //console.table(contents);
+    console.table(contents);
     setRows(contents);
   
   }
@@ -42,43 +50,32 @@ function BoardViewData() {
   const classes = useStyles();
   return (
     
-    <>
-    {/* 
+  
+    /* 
          {rows.map((data) => (
             <li key={data.id}> {data.user_id} 
             </li>
 
-          ))} */}
-          
-          <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>id</TableCell>
-            <TableCell align="right">제목</TableCell>
-            <TableCell align="right">컨텐츠</TableCell>
-            <TableCell align="right">작성자</TableCell>
+          ))} */
+         
+     <>
+         <Stack direction="row" justifyContent="end" alignItems="end"   sx={{ mt:-85 }}>
+              <Button
             
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell component="th" scope="row">
-                {row.id}
-              </TableCell>
-              <TableCell align="right">{row.subject}</TableCell>
-              <TableCell align="right">{row.contents}</TableCell>
-              <TableCell align="right">{row.user_id}</TableCell>
-             
-            </TableRow> 
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+                  variant="contained"
+                  sx={{  mr: 36,mb:3 }}
+              > 조회</Button>
+          </Stack>
 
 
-    </>
+        
+        <div className="ag-theme-alpine" style={{height: 600, width: 1200}}>
+          <AgGridReact
+              rowData={rows}
+              columnDefs={columnDefs}>
+          </AgGridReact>
+        </div>
+        </>
   );
 }
 
