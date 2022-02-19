@@ -9,7 +9,9 @@ import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MenuList from './MenuList.js';
-import BoardViewData from './board/BoardViewData.js';
+import BoardView from './board/BoardView.js';
+import CreateBoardData from './board/CreateBoardData.js';
+
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
@@ -69,7 +71,7 @@ function ResponsiveDrawer(props) {
         sx={{ flexGrow: 1, p: 12, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
          {/* Main 컨텐츠 보여주는 부분*/}
-          <BoardViewData/>
+          <BoardView/>
        
       </Box>
     </Box>

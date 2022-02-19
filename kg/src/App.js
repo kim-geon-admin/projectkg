@@ -1,7 +1,7 @@
 import './App.css';
 import Dashboard from './pagelist/Main';
 import SignIn from './pagelist/SignIn';
-import BoardView from './pagelist/board/BoardView';
+import BoardView_test from './pagelist/board/BoardView_test';
 import {BrowserRouter,Route,Router,Routes,Link} from 'react-router-dom';
 
 

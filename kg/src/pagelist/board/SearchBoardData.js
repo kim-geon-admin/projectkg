@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 
 
 
-function BoardViewData() {
+function SearchBoardData(props) {
   // IP주소 변수 선언
   const [rows, setRows] = useState([]);
   //ag-grid col info
@@ -28,7 +28,8 @@ function BoardViewData() {
     { headerName: "컨텐츠",field:"contents", sortable: true, filter: true },
     { headerName: "작성자",field:"user_id", sortable: true, filter: true },
 ]);
-
+ // 조회 or 등록화면 전환
+ const [viewTp, setViewTp] = useState('search');
 
   const  selectBoard = async () =>{
    
@@ -36,6 +37,12 @@ function BoardViewData() {
     console.table(contents);
     setRows(contents);
   
+  }
+
+  const createBoard = () =>{
+      console.log(props);
+      props.setViewTp('create');
+    alert('등록');
   }
 
 
@@ -59,24 +66,27 @@ function BoardViewData() {
           ))} */
          
      <>
+
          <Stack direction="row" justifyContent="end" alignItems="end"   sx={{ mt:-85 }}>
               <Button
-            
                   variant="contained"
-                  sx={{  mr: 36,mb:3 }}
+                  sx={{  mr: 1,mb:3 }}
               > 조회</Button>
+              <Button
+                variant="contained"
+                sx={{  mr: 36,mb:3 }}
+                onClick = {createBoard}
+              > 등록</Button>
           </Stack>
-
-
-        
         <div className="ag-theme-alpine" style={{height: 600, width: 1200}}>
           <AgGridReact
               rowData={rows}
               columnDefs={columnDefs}>
           </AgGridReact>
         </div>
-        </>
+ 
+    </>
   );
 }
 
-export default BoardViewData;
+export default SearchBoardData

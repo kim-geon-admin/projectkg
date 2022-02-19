@@ -1,55 +1,45 @@
 import React, { useState, useEffect } from 'react';
+import {axiosGet} from '../../utill/getAxios';
+import { makeStyles } from '@material-ui/core/styles';
+import { AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import SearchBoardData from './SearchBoardData.js';
+import CreateBoardData from './CreateBoardData.js';
+import { ContactsOutlined } from '@mui/icons-material';
 
-import customAxios from '../../customAxios';
-import { Button } from 'reactstrap';
-
-function BoardView() {
-  // IP주소 변수 선언
-  const [rows, setRows] = useState([]);
 
 
 
-  // IP주소 값을 설정합니다.
-  function callback(data) {
-  
-  console.log(data);
-  
-    setRows(data);
-   
-  
-  }
+
+function BoardViewData() {
+
+ // 조회 or 등록화면 전환
+ const [viewTp, setViewTp] = useState('search');
 
 
 
   // 첫번째 렌더링을 다 마친 후 실행합니다.
   useEffect(
-
-
     () => {
-      // 클라이언트의 IP주소를 알아내는 백엔드의 함수를 호출합니다.
-    
-      customAxios('/ip', callback);
- 
-    }, []
+       console.log('렌더링 된다');
+    }, [viewTp]
   );
 
+ 
+
   return (
-    
-    <div className="App">
-      <header className="App-header">
-    
-      {/*  이 기기의 IP주소는 {rows}입니다d.*/}
+         
+     <>
+     {viewTp === "search" ?  <SearchBoardData setViewTp={setViewTp}/> : <CreateBoardData/>}
 
-         {rows.map((data) => (
-            <li key={data.id}> {data.username}
-             
-            </li>
-          ))} 
-
-      </header>
-      <Button color="primary">primary</Button>
-    </div>
+         
+    </>
   );
 }
 
-export default BoardView;
+export default BoardViewData;
