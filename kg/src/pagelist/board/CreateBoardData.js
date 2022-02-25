@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import {axiosGet} from '../../utill/getAxios';
 import { makeStyles } from '@material-ui/core/styles';
 import { AgGridReact } from 'ag-grid-react';
@@ -10,7 +10,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-
+import {ItemContext} from '../provider/LoginContext.js'
 
 
 
@@ -18,7 +18,8 @@ function CreateBoardData() {
   // IP주소 변수 선언
   const [rows, setRows] = useState([]);
 
-
+  const userInfo  = useContext(ItemContext);
+  console.log('dd',userInfo);
 
   const  selectBoard = async () =>{
    

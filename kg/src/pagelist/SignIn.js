@@ -1,4 +1,4 @@
-import React, { Fragment,useState,useRef  } from 'react';
+import React, { Fragment,useState,useRef,useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import {axiosPost,axiosGet} from '../utill/getAxios';
 
 import {useNavigate} from 'react-router-dom';
+import {LoginContext,ItemContext} from './provider/LoginContext.js'
+
 
 /*
 function Copyright(props: any) {
@@ -47,37 +49,48 @@ export default function SignIn() {
 
   const [userId, setuserId] = useState("") ;
   const [userPass, setuserPass] = useState('') ;
+  const itemInfo  = useContext(ItemContext);
+
+
 
   let navigate = useNavigate();
   
 
   const handleInputId = (e) =>{
-    console.log(e.target.value);
+   // console.log(e.target.value);
     setuserId(e.target.value);
   }
 
   const handleInputPass = (e) =>{
-    console.log(e.target.value); 
+   // console.log(e.target.value); 
     setuserPass(e.target.value);
   }
 
+ 
 
 const  authLogin = async () =>{
         let param = {
           user_id : userId,
           user_password : userPass
         }
-      console.log('param',param);
+    
       /* async awit 적용 전 버젼
         getAxios('/userInfo', param,  function callback(data) {
           navigate("/main")
         });
       */
+       
       //async awit 적용 버젼
       let isAuthUser = await axiosPost('/userInfo', param);
       
       if( isAuthUser != undefined && isAuthUser.length > 0 ){
-        navigate("/main");
+  
+        //globalLoginInfo.setGlobalLoginInfo(param);
+        itemInfo.setItem('user_id',param.user_id);
+        itemInfo.setItem('user_password',param.user_password);
+        navigate("/main",{state:param});
+
+
       }else{
         alert('인증된 사용자가 아닙니다') ;
       }

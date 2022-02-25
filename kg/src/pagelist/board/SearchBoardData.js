@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import {axiosGet} from '../../utill/getAxios';
 import { makeStyles } from '@material-ui/core/styles';
 import { AgGridReact } from 'ag-grid-react';
@@ -9,6 +9,7 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 
+
 const useStyles = makeStyles({
   table: {
     minWidth: 650,
@@ -18,6 +19,19 @@ const useStyles = makeStyles({
 
 
 function SearchBoardData(props) {
+
+
+
+  useEffect(
+    () => {
+       console.log('최초 렌더링 된다');
+       return () => {
+        console.log('컴포넌트가 화면에서 사라짐');
+      };
+    }, []
+  );
+
+
   // IP주소 변수 선언
   const [rows, setRows] = useState([]);
   //ag-grid col info
@@ -34,7 +48,7 @@ function SearchBoardData(props) {
   const  selectBoard = async () =>{
    
     let contents = await axiosGet('/getContents');
-    console.table(contents);
+    
     setRows(contents);
   
   }

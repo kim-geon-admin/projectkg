@@ -15,12 +15,16 @@ import CreateBoardData from './board/CreateBoardData.js';
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
+import {useLocation} from 'react-router-dom';
 
 const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
   const { window } = props;
+ 
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  console.log(useLocation());
+
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
