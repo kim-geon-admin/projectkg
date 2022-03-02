@@ -21,7 +21,7 @@ export default  function customAxiosPost(url, param,callback) {
   ).then(function (response) {
     callback(response.data);
   });
-}
+} 
 
 
 export function axiosPost(url, param) {
