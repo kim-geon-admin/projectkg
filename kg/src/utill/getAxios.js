@@ -32,7 +32,7 @@ export function axiosPost(url, param) {
       method: 'post',
       data : param,
       baseURL: 'http://localhost:8080',
-      withCredentials: true,
+      //withCredentials: true,
     } 
   ).then(function (response) {
     console.log(response);
@@ -48,7 +48,7 @@ export function axiosGet(url) {
       url: '/api' + url,
       method: 'get',
       baseURL: 'http://localhost:8080',
-      withCredentials: true,
+      //withCredentials: true, //nodejs에서 데이터를 못가져와 주석처리
     } 
   ).then(function (response) {
     return response.data;

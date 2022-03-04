@@ -47,7 +47,7 @@ function SearchBoardData(props) {
 
   const  selectBoard = async () =>{
    
-    let contents = await axiosGet('/getContents');
+    let contents = await axiosGet('/board/getContents');
     
     setRows(contents);
   

@@ -81,7 +81,7 @@ const  authLogin = async () =>{
       */
        
       //async awit 적용 버젼
-      let isAuthUser = await axiosPost('/userInfo', param);
+      let isAuthUser = await axiosPost('/user/userInfo', param);
       
       if( isAuthUser != undefined && isAuthUser.length > 0 ){
   
