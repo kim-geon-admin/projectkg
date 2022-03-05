@@ -30,7 +30,7 @@ function BoardViewData() {
   return (
          
      <div>
-     {viewTp === "search" ?  <SearchBoardData setViewTp={setViewTp}/> : <CreateBoardData/>}
+     {viewTp === "search" ?  <SearchBoardData setViewTp={setViewTp}/> : <CreateBoardData setViewTp={setViewTp}/>}
 
          
     </div>

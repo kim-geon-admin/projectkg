@@ -21,35 +21,34 @@ const useStyles = makeStyles({
 function SearchBoardData(props) {
 
 
+  // 게시판 데이터
+  const [rows, setRows] = useState([]);
 
   useEffect(
     () => {
        console.log('최초 렌더링 된다');
+       selectBoard();
        return () => {
-        console.log('컴포넌트가 화면에서 사라짐');
+        console.log('SearchBoardData 컴포넌트가 화면에서 사라짐');
       };
-    }, []
+    },[]
   );
 
 
-  // IP주소 변수 선언
-  const [rows, setRows] = useState([]);
   //ag-grid col info
   const [columnDefs, setColumnDefs] = useState([
     { headerName: "NO",field:"id", sortable: true, filter: true,valueGetter: "node.rowIndex + 1" },
     { headerName: "ID",field:"id", sortable: true, filter: true },
     { headerName: "제목",field:"subject",sortable: true, filter: true},
     { headerName: "컨텐츠",field:"contents", sortable: true, filter: true },
-    { headerName: "작성자",field:"user_id", sortable: true, filter: true }
-    
+    { headerName: "작성자",field:"user_id", sortable: true, filter: true },
+    { headerName: "생성일시",field:"creation_timestamp", sortable: true, filter: true }
 ]);
- // 조회 or 등록화면 전환
- const [viewTp, setViewTp] = useState('search');
 
-  const  selectBoard = async () =>{
+  //조회 버튼 클릭시 조회 
+   const  selectBoard = async () =>{
    
-    let contents = await axiosGet('/board/getContents');
-    
+    let contents = await axiosGet('/board/getContents');    
     setRows(contents);
   
   }
@@ -61,13 +60,16 @@ function SearchBoardData(props) {
   }
 
 
+
+
   // 첫번째 렌더링을 다 마친 후 실행합니다.
+  /*
   useEffect(
     () => {
         selectBoard();
     }, []
   );
-
+*/
 
   const classes = useStyles();
   return (
@@ -88,7 +90,7 @@ function SearchBoardData(props) {
           p: 1,
           m: 1,
           height:80,
-          width:'80%',
+          width:'82%',
           mb:-2
         }}
       >
@@ -100,13 +102,17 @@ function SearchBoardData(props) {
               <Button
                   variant="contained"
                   sx={{  mr: 1,mb:3 }}
+                  onClick = {selectBoard}
               > 조회</Button>
             
   </Box>
-        <div className="ag-theme-alpine" style={{height: '100%',width:  '80%'}}>
+        <div className="ag-theme-alpine" style={{height: '98%',width:  '82%'}}>
           <AgGridReact 
               rowData={rows}
-              columnDefs={columnDefs}>
+              columnDefs={columnDefs}
+              pagination={true}
+              paginationPageSize={15}
+              > 
           </AgGridReact>
         </div>
  
