@@ -12,7 +12,7 @@ import Stack from '@mui/material/Stack';
 
 const useStyles = makeStyles({
   table: {
-    minWidth: 650,
+  //  minWidth: 650,
   },
 });
 
@@ -38,9 +38,10 @@ function SearchBoardData(props) {
   const [columnDefs, setColumnDefs] = useState([
     { headerName: "NO",field:"id", sortable: true, filter: true,valueGetter: "node.rowIndex + 1" },
     { headerName: "ID",field:"id", sortable: true, filter: true },
-    { headerName: "제목",field:"subject", sortable: true, filter: true},
+    { headerName: "제목",field:"subject",sortable: true, filter: true},
     { headerName: "컨텐츠",field:"contents", sortable: true, filter: true },
-    { headerName: "작성자",field:"user_id", sortable: true, filter: true },
+    { headerName: "작성자",field:"user_id", sortable: true, filter: true }
+    
 ]);
  // 조회 or 등록화면 전환
  const [viewTp, setViewTp] = useState('search');
@@ -56,7 +57,7 @@ function SearchBoardData(props) {
   const createBoard = () =>{
       console.log(props);
       props.setViewTp('create');
-    alert('등록');
+     // alert('등록');
   }
 
 
@@ -80,20 +81,30 @@ function SearchBoardData(props) {
           ))} */
          
      <>
-
-         <Stack direction="row" justifyContent="end" alignItems="end"   sx={{ mt:-85 }}>
+        <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row-reverse",
+          p: 1,
+          m: 1,
+          height:80,
+          width:'80%',
+          mb:-2
+        }}
+      >
+                <Button
+                variant="contained"
+                sx={{  mb:3  }}
+                onClick = {createBoard}
+              > 등록</Button>
               <Button
                   variant="contained"
                   sx={{  mr: 1,mb:3 }}
               > 조회</Button>
-              <Button
-                variant="contained"
-                sx={{  mr: 36,mb:3 }}
-                onClick = {createBoard}
-              > 등록</Button>
-          </Stack>
-        <div className="ag-theme-alpine" style={{height: 600, width: 1200}}>
-          <AgGridReact
+            
+  </Box>
+        <div className="ag-theme-alpine" style={{height: '100%',width:  '80%'}}>
+          <AgGridReact 
               rowData={rows}
               columnDefs={columnDefs}>
           </AgGridReact>

@@ -29,11 +29,11 @@ function BoardViewData() {
 
   return (
          
-     <>
+     <div>
      {viewTp === "search" ?  <SearchBoardData setViewTp={setViewTp}/> : <CreateBoardData/>}
 
          
-    </>
+    </div>
   );
 }
 

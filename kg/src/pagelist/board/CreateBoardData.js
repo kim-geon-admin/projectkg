@@ -41,14 +41,29 @@ function CreateBoardData() {
   return (
          
      <div>
-         <Stack direction="row" justifyContent="end" alignItems="end"   sx={{ mt:-85 }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "row-reverse",
+              p: 1,
+              m: 1,
+              height:65,
+              width:'80%',
+              mb:-2
+            }}
+          >
               <Button
-            
-                  variant="contained"
-                  sx={{  mr: 36,mb:1 }}
-              >등록</Button>
-          </Stack>
-          <Box sx={{ height:55,width:1200 }}>
+                    variant="contained"
+                    sx={{  mb:1  }}
+                   // onClick = {createBoard}
+                  > 등록</Button>
+                  <Button
+                      variant="contained"
+                      sx={{  mr: 1,mb:1 }}
+                  > 이전</Button>
+                 
+        </Box>
+          <Box sx={{ height:55, width:'80%' }}>
               <TextField
                         margin="normal"
                         required
@@ -59,7 +74,7 @@ function CreateBoardData() {
                         autoFocus
                       />
           </Box>
-          <Box sx={{ height:255,mt:5,width:1200 }}>
+          <Box sx={{ height:255,mt:5, width:'80%' }}>
           <TextareaAutosize
                 
                 minRows={30}
