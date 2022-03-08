@@ -83,11 +83,19 @@ const  authLogin = async () =>{
       //async awit 적용 버젼
       let isAuthUser = await axiosPost('/user/userInfo', param);
       
-      if( isAuthUser != undefined && isAuthUser.length > 0 ){
+      //사용자 토큰 정보 isAuthUser.jwt_token
+      //사용자 계정 정보 isAuthUser.result
+      //스프링부트에서는 isAuthUser.result => isAuthUser 사용
+      if( isAuthUser.result != undefined && isAuthUser.result.length > 0 ){
   
         //globalLoginInfo.setGlobalLoginInfo(param);
         itemInfo.setItem('user_id',param.user_id);
         itemInfo.setItem('user_password',param.user_password);
+        
+        //session storage에 jwt 토큰 저장
+        sessionStorage.setItem("token", isAuthUser.jwt_token);
+
+
         navigate("/main",{state:param});
 
 
