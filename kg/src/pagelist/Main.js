@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect ,useContext} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -10,7 +10,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import MenuList from './MenuList.js';
 import BoardView from './board/BoardView.js';
-import CreateBoardData from './board/CreateBoardData.js';
+import HomeView from './home/HomeView.js';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -21,14 +21,19 @@ const drawerWidth = 240;
 
 function ResponsiveDrawer(props) {
   const { window } = props;
- 
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const [title, setTitle] = React.useState('HOME');
+
   console.log(useLocation());
 
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  useEffect(
+    () => {
+       console.log('Main js 렌더링');
+     
+     
+    }
+  );
 
 
 
@@ -47,7 +52,7 @@ function ResponsiveDrawer(props) {
         <Toolbar>
        
           <Typography variant="h6" noWrap component="div">
-            자유게시판
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -66,7 +71,7 @@ function ResponsiveDrawer(props) {
           }}
           open
         >
-          {MenuList}
+          <MenuList title={setTitle}/>
         </Drawer>
       </Box>
     
@@ -75,7 +80,14 @@ function ResponsiveDrawer(props) {
         sx={{ flexGrow: 1, p: 12, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
       >
          {/* Main 컨텐츠 보여주는 부분*/}
-          <BoardView/>
+         {
+           
+           (title === 'HOME') && <HomeView/> ||  
+
+           (title === '자유게시판') && <BoardView/>
+           
+
+          }
        
       </Box>
     </Box>

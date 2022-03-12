@@ -7,7 +7,7 @@ import SearchBoardData from './SearchBoardData.js';
 import CreateBoardData from './CreateBoardData.js';
 import { ContactsOutlined } from '@mui/icons-material';
 
-import {LoginContext,ItemContext} from '../provider/LoginContext.js'
+import {ItemContext} from '../provider/ItemContext.js'
 
 
 
