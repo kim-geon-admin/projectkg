@@ -9,12 +9,19 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 
+import  '../../css/common.css';
 
 const useStyles = makeStyles({
   table: {
   //  minWidth: 650,
   },
 });
+
+const agGirdCellStyle = {
+  textAlign:'center'
+  
+}
+
 
 
 
@@ -37,12 +44,13 @@ function SearchBoardData(props) {
 
   //ag-grid col info
   const [columnDefs, setColumnDefs] = useState([
-    { headerName: "NO",field:"id", sortable: true, filter: true,valueGetter: "node.rowIndex + 1" },
-    { headerName: "ID",field:"id", sortable: true, filter: true },
-    { headerName: "제목",field:"subject",sortable: true, filter: true},
-    { headerName: "컨텐츠",field:"contents", sortable: true, filter: true },
-    { headerName: "작성자",field:"user_id", sortable: true, filter: true },
-    { headerName: "생성일시",field:"creation_timestamp", sortable: true, filter: true }
+    { headerName: "NO",field:"id",width:'100' ,sortable: true, filter: true,valueGetter: "node.rowIndex + 1" ,cellStyle:agGirdCellStyle},
+   //  { headerName: "ID",field:"id", sortable: true, filter: true },
+    { headerName: "제목", field:"subject",width:'600',sortable: true, filter: true},
+  //   { headerName: "컨텐츠",field:"contents", sortable: true, filter: true },
+    { headerName: "작성자",field:"user_id",width:'150', sortable: true, filter: true ,cellStyle:agGirdCellStyle},
+    { headerName: "생성일시",field:"creation_timestamp",width:'200' ,sortable: true, filter: true,cellStyle:agGirdCellStyle },
+    { headerName: "조회수",field:"click_count",width:'150' ,sortable: true, filter: true ,cellStyle:agGirdCellStyle}
 ]);
 
   //조회 버튼 클릭시 조회 
@@ -59,7 +67,11 @@ function SearchBoardData(props) {
      // alert('등록');
   }
 
-
+  const onDoubleClicked = (event)=> {
+    console.log(event.data.id );
+    props.selectRows(event.data);
+    props.setViewTp('show');
+}
 
 
   // 첫번째 렌더링을 다 마친 후 실행합니다.
@@ -112,6 +124,7 @@ function SearchBoardData(props) {
               columnDefs={columnDefs}
               pagination={true}
               paginationPageSize={15}
+              onRowDoubleClicked = {onDoubleClicked}
               > 
           </AgGridReact>
         </div>

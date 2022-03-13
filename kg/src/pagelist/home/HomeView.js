@@ -13,6 +13,7 @@ import SearchNews from './SearchNews';
 
 
 
+
 function HomeView() {
 
  // 조회 or 등록화면 전환

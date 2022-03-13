@@ -5,6 +5,7 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import SearchBoardData from './SearchBoardData.js';
 import CreateBoardData from './CreateBoardData.js';
+import ShowBoardData from './ShowBoardData.js';
 import { ContactsOutlined } from '@mui/icons-material';
 
 import {ItemContext} from '../provider/ItemContext.js'
@@ -15,6 +16,9 @@ function BoardViewData() {
 
  // 조회 or 등록화면 전환
  const [viewTp, setViewTp] = useState('search');
+
+ // 선택한 로우 정보
+ const [selectRows, setSelectRows] = useState(null);
 
 
 
@@ -30,8 +34,14 @@ function BoardViewData() {
   return (
          
      <div>
-     {viewTp === "search" ?  <SearchBoardData setViewTp={setViewTp}/> : <CreateBoardData setViewTp={setViewTp}/>}
+    
+        {
+            (viewTp === "search" && <SearchBoardData setViewTp={setViewTp} selectRows={setSelectRows} />) ||
+            (viewTp === "create" && <CreateBoardData setViewTp={setViewTp}/>) ||
+            (viewTp === "show" && <ShowBoardData setViewTp={setViewTp} selectedRows={selectRows}  />)
+                                  
 
+        }
          
     </div>
   );

@@ -5,20 +5,24 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import  '../../css/common.css'; 
+
 
 const thStyle = {
     textAlign: 'center',
     backgroundColor  : '#d9ddde'
 }
+const aStyle = {
+    textDecorationLine : 'none',
+    borderBottom : 'none'
+}
 
 
 function HomeView(props) {
 
-    console.log('dddd');
+    console.log('dddd',props.rows);
     let dataRows =  props.rows;
-    if(props.rows == null ){
-         dataRows = [];
-    }
+  
     
     return(
         <TableContainer component={Paper}>
@@ -36,9 +40,9 @@ function HomeView(props) {
                 key={row.title}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
-            ><TableCell  component="th">
+            ><TableCell  component="th" sx={{height:10}}>
                 
-                <TableCell  component="a" href= {row.url} target='_blank'>
+                <TableCell  component="a"  href= {row.url} sx={aStyle} target='_blank'>
                  {row.title}
                 </TableCell>    
             </TableCell>
