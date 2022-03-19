@@ -26,6 +26,8 @@ function ShowBoardData(props) {
  //화면전환 여부
 
   const userInfo  = useContext(ItemContext);
+  const [detailData, setDetailData] = useState({});
+  const [rows, setRows] = useState('kg');
   //console.log('dd',userInfo);
 
  var dataRows = [];
@@ -35,17 +37,37 @@ function ShowBoardData(props) {
   }
 
 
+
   // 첫번째 렌더링을 다 마친 후 실행합니다.
   useEffect(
     () => { 
        // selectBoard();
        console.log('ShowBoardData 컴포넌트 실행')
-       console.log(props.selectedRows);
+
+       selectDetailData(props.selectedRows);
+       console.log('detailContents',detailData);
        return () => {
-        console.log('CreateBoardData 컴포넌트가 화면에서 사라짐');
+        console.log('ShowBoardData 컴포넌트가 화면에서 사라짐');
       };
-    }, []
+    }, [props.selectedRows]
   );
+
+  const  selectDetailData = async (selData) =>{
+    //id,user_id
+    let paramObj = {
+        id : selData.id,
+        user_id : selData.user_id
+    }
+    let detailContents = await axiosGet('/board/getDetailContents',paramObj);    
+    
+    //console.log('detailContents',detailContents);
+    
+    setDetailData(detailContents[0]);
+
+ 
+
+  
+  }
  
 
   return (
@@ -75,24 +97,19 @@ function ShowBoardData(props) {
                 <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                     <TableHead sx={{ height: 40 }} >
                         <TableRow>
-                            <TableCell sx={thStyle}>주요뉴스</TableCell>
+                            <TableCell sx={thStyle}>{detailData.subject } </TableCell>
                         </TableRow>
                     </TableHead>
 
                     <TableBody sc={{height:'90%'}}>
-                        {dataRows.map((row) => (
+                      
                         <TableRow
-                            key={row.title}
+                            key={detailData.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                            <TableCell  component="tr" >
-                                <TableCell  component="a" target='_blank'>
-                                dddd
-                                </TableCell>    
-                            </TableCell>
-
+                         {detailData.subject}
                         </TableRow>
-                        ))}
+                    
                     </TableBody>
                 </Table>
             </TableContainer>

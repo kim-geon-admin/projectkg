@@ -33,7 +33,7 @@ function SearchBoardData(props) {
 
   useEffect(
     () => {
-       console.log('최초 렌더링 된다');
+       console.log('SearchBoardData 렌더링 된다');
        selectBoard();
        return () => {
         console.log('SearchBoardData 컴포넌트가 화면에서 사라짐');

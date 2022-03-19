@@ -46,13 +46,14 @@ export function axiosPost(url, param) {
 }
 
 
-export function axiosGet(url) {
+export function axiosGet(url,parmObj) {
   let token = sessionStorage.getItem("token");
- 
+
   return axios(
     {
       headers: {'token': token},
       url: '/api' + url,
+      params : parmObj,
       method: 'get',
       baseURL: 'http://localhost:8080',
       withCredentials: true, // 쿠키를 헤더에 포함할지 여부
