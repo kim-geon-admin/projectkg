@@ -33,6 +33,7 @@ function HomeView() {
   );
 
     // 첫번째 렌더링을 다 마친 후 실행합니다.
+ 
     useEffect(
         () => {
            console.log('newData를 가져왔으므로 리랜더링 된다');

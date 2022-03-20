@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import MenuList from './MenuList.js';
 import BoardView from './board/BoardView.js';
 import HomeView from './home/HomeView.js';
+import PhotoView from './photo/PhotoView.js';
 
 import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
@@ -84,7 +85,9 @@ function ResponsiveDrawer(props) {
            
            (title === 'HOME') && <HomeView/> ||  
 
-           (title === '자유게시판') && <BoardView/>
+           (title === '자유게시판') && <BoardView/> ||
+
+           (title === '사진첩') && <PhotoView/>
            
 
           }

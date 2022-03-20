@@ -52,7 +52,7 @@ function ShowPhoto(props) {
     setTimeout(() => {
       console.log('저장후 ',imgFile);
      // imgBtnClick(); 
-    },1000)
+    },1000) 
 
     console.log(targetFile.current.files[0]);
 

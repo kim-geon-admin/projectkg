@@ -107,7 +107,7 @@ function ShowBoardData(props) {
                             key={detailData.id}
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                         {detailData.subject}
+                         {detailData.contents}
                         </TableRow>
                     
                     </TableBody>

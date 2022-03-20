@@ -45,6 +45,22 @@ export function axiosPost(url, param) {
 
 }
 
+export function axiosFilePost(url, param) {
+  let token = sessionStorage.getItem("token");
+
+ return  axios.post('http://localhost:8080/api'+url,param,
+ { 
+  headers: {'token': token, 'Content-Type': 'multipart/form-data'},
+   withCredentials: true
+ }   
+  ).then(function (response) {
+    console.log(response);
+    return response.data;
+  });
+
+}
+
+
 
 export function axiosGet(url,parmObj) {
   let token = sessionStorage.getItem("token");
