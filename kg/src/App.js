@@ -8,8 +8,8 @@ import {ItemContext} from './pagelist/provider/ItemContext.js'
 import manageItem from './utill/manageItem';
 function App() {
  
-
-  let userInfo = new manageItem('김건','age');
+  let sessionUserId = sessionStorage.getItem('user_id') || 'guest' ;
+  let userInfo = new manageItem(sessionUserId,'');
 
     // 첫번째 렌더링을 다 마친 후 실행합니다.
     useEffect(

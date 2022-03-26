@@ -95,6 +95,9 @@ const  authLogin = async () =>{
         //session storage에 jwt 토큰 저장
         sessionStorage.setItem("token", isAuthUser.jwt_token);
 
+          //session storage에 jwt 토큰 저장
+          sessionStorage.setItem("user_id",param.user_id);
+
 
         navigate("/main",{state:param});
 
