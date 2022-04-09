@@ -50,7 +50,7 @@ function SearchBoardData(props) {
   //   { headerName: "컨텐츠",field:"contents", sortable: true, filter: true },
     { headerName: "작성자",field:"user_id",width:'150', sortable: true, filter: true ,cellStyle:agGirdCellStyle},
     { headerName: "생성일시",field:"creation_timestamp",width:'200' ,sortable: true, filter: true,cellStyle:agGirdCellStyle },
-    { headerName: "조회수",field:"click_count",width:'150' ,sortable: true, filter: true ,cellStyle:agGirdCellStyle}
+    { headerName: "조회수",field:"select_count",width:'150' ,sortable: true, filter: true ,cellStyle:agGirdCellStyle}
 ]);
 
   //조회 버튼 클릭시 조회 
@@ -68,7 +68,7 @@ function SearchBoardData(props) {
   }
 
   const onDoubleClicked = (event)=> {
-    console.log(event.data.id );
+    console.log(event.data );
     props.selectRows(event.data);
     props.setViewTp('show');
 }

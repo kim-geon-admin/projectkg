@@ -45,7 +45,7 @@ function ShowBoardData(props) {
        console.log('ShowBoardData 컴포넌트 실행')
 
        selectDetailData(props.selectedRows);
-       console.log('detailContents',detailData);
+       console.log('detailContents',props.selectedRows);
        return () => {
         console.log('ShowBoardData 컴포넌트가 화면에서 사라짐');
       };
@@ -56,7 +56,8 @@ function ShowBoardData(props) {
     //id,user_id
     let paramObj = {
         id : selData.id,
-        user_id : selData.user_id
+        user_id : selData.user_id,
+        count : selData.select_count
     }
     let detailContents = await axiosGet('/board/getDetailContents',paramObj);    
     
