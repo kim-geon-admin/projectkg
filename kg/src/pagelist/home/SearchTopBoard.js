@@ -18,7 +18,7 @@ const aStyle = {
 }
 
 
-function SearchNews(props) {
+function SearchTopBoard(props) {
 
     console.log('dddd',props.rows);
     let dataRows =  props.rows;
@@ -29,7 +29,7 @@ function SearchNews(props) {
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>
-            <TableCell sx={thStyle}>주요뉴스</TableCell>
+            <TableCell sx={thStyle}>인기 게시글</TableCell>
         </TableRow>
         </TableHead>
 
@@ -37,13 +37,13 @@ function SearchNews(props) {
         <TableBody>
             {dataRows.map((row) => (
             <TableRow
-                key={row.title}
+                key={row.subject}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
 
             ><TableCell  component="th" sx={{height:10}}>
                 
-                <TableCell  component="a"  href= {row.url} sx={aStyle} target='_blank'>
-                 {row.title}
+                <TableCell  component="td"   sx={aStyle} >
+                 {row.subject}
                 </TableCell>    
             </TableCell>
 
@@ -57,4 +57,4 @@ function SearchNews(props) {
 
     }
 
-export default SearchNews;
+export default SearchTopBoard;
